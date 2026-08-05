@@ -12,27 +12,41 @@ class StudentDocumentController extends Controller
 {
     public function index()
     {
-        $student = Student::with('registration')
+        $student = Student::with('registration.jalur')
             ->where('user_id', Auth::id())
-            ->first();
+            ->firstOrFail();
 
-        return view('student.documents.index', compact('student'));
+        $registration = $student->registration;
+        $jalur = $registration->jalur;
+
+        return view('student.documents.index', compact(
+            'student',
+            'registration',
+            'jalur'
+        ));
     }
 
-    public function store(Request $request,CloudinaryService $cloudinaryService)
+    public function store(Request $request, CloudinaryService $cloudinaryService)
     {
-        $request->validate([
+        $student = Student::with('registration.jalur')
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        $registration = $student->registration;
+
+        $rules = [
             'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'kk' => 'required|mimes:pdf,jpg,jpeg,png|max:5120',
             'ijazah' => 'required|mimes:pdf,jpg,jpeg,png|max:5120',
             'rapor' => 'required|mimes:pdf,jpg,jpeg,png|max:5120',
-        ]);
+        ];
 
-        $student = Student::with('registration')
-            ->where('user_id', Auth::id())
-            ->first();
+        // Piagam wajib jika jalur Prestasi
+        if (strtolower($registration->jalur->nama) == 'prestasi') {
+            $rules['piagam'] = 'required|mimes:pdf,jpg,jpeg,png|max:5120';
+        }
 
-        $registration = $student->registration;
+        $request->validate($rules);
 
         $docs = [
             'foto' => $request->file('foto'),
@@ -41,22 +55,28 @@ class StudentDocumentController extends Controller
             'rapor' => $request->file('rapor'),
         ];
 
+        // Tambahkan piagam jika ada
+        if ($request->hasFile('piagam')) {
+            $docs['piagam'] = $request->file('piagam');
+        }
+
         foreach ($docs as $jenis => $file) {
 
-    $upload = $cloudinaryService->upload($file->getRealPath());
+            $upload = $cloudinaryService->upload($file->getRealPath());
 
-    Document::create([
-        'registration_id' => $registration->id,
-        'jenis_dokumen' => $jenis,
-        'cloudinary_url' => $upload['secure_url'],
-        'cloudinary_public_id' => $upload['public_id'],
-        'status_verifikasi' => 'menunggu_verifikasi',
-        'catatan' => null,
-    ]);
-}
-   
-        
-      
+            Document::updateOrCreate(
+                [
+                    'registration_id' => $registration->id,
+                    'jenis_dokumen' => $jenis,
+                ],
+                [
+                    'cloudinary_url' => $upload['secure_url'],
+                    'cloudinary_public_id' => $upload['public_id'],
+                    'status_verifikasi' => 'menunggu_verifikasi',
+                    'catatan' => null,
+                ]
+            );
+        }
 
         $registration->update([
             'status' => 'menunggu_verifikasi'
@@ -64,6 +84,6 @@ class StudentDocumentController extends Controller
 
         return redirect()
             ->route('student.dashboard')
-            ->with('success', 'Dokumen berhasil diupload');
+            ->with('success', 'Dokumen berhasil diupload.');
     }
 }

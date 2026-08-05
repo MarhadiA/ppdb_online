@@ -15,7 +15,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // penting untuk PPDB
+        'role', 
     ];
 
     protected $hidden = [
@@ -31,17 +31,17 @@ class User extends Authenticatable
         ];
     }
 
-    // ======================
+    
     // RELASI
-    // ======================
+    
     public function student()
     {
         return $this->hasOne(Student::class);
     }
 
-    // ======================
+    
     // ROLE HELPERS
-    // ======================
+    
     public function isAdmin()
     {
         return $this->role === 'admin';

@@ -9,25 +9,24 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // =========================
+   
     // SHOW LOGIN PAGE
-    // =========================
+    
     public function showLogin()
     {
         return view('auth.login');
     }
 
-    // =========================
+    
     // SHOW REGISTER PAGE
-    // =========================
+    
     public function showRegister()
     {
         return view('auth.register');
     }
 
-    // =========================
-    // REGISTER USER
-    // =========================
+        // REGISTER USER
+    
     public function register(Request $request)
     {
         // Validasi input register
@@ -55,9 +54,8 @@ class AuthController extends Controller
         return redirect('/student/dashboard');
     }
 
-    // =========================
+   
     // LOGIN USER
-    // =========================
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -86,9 +84,9 @@ class AuthController extends Controller
         ]);
     }
 
-    // =========================
+    
     // LOGOUT
-    // =========================
+    
     public function logout(Request $request)
     {
         Auth::logout();

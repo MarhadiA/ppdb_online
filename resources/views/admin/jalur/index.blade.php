@@ -68,17 +68,15 @@
         </form>
 
                     {{-- DELETE --}}
-                    <form method="POST" action="/admin/jalur/{{ $j->id }}">
-                        @csrf
-                        @method('DELETE')
-                        <button
-                            onclick="return confirm('Hapus jalur ini?')"
-                            class="bg-red-600 text-white px-4 py-2 rounded">
-                            Hapus
-                        </button>
-                    </form>
-                </div>
-            </div>
+        <form method="POST" action="/admin/jalur/{{ $j->id }}">
+             @csrf
+             @method('DELETE')
+             <button onclick="return confirm('Hapus jalur ini?')" class="bg-red-600 text-white px-4 py-2 rounded">
+                 Hapus
+            </button>
+        </form>
+    </div>
+    </div>
     </div>
     @endforeach
 

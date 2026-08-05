@@ -68,35 +68,55 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/admin/panitia/{id}', [AdminPanitiaController::class, 'destroy']);
 });
 
-Route::get('/student/dashboard', function () {
-    return view('student.dashboard');
-});
+// Route::get('/student/dashboard', function () {
+//     return view('student.dashboard');
+// });
 
-Route::get('/student/registration/create', function () {
-    return view('student.registration.create');
-});
+// Route::get('/student/registration/create', function () {
+//     return view('student.registration.create');
+// });
 
-Route::get(
-    '/student/registration/create',
-    [StudentRegistrationController::class, 'create']
-);
+// Route::get(
+//     '/student/registration/create',
+//     [StudentRegistrationController::class, 'create']
+// );
 
-Route::post(
-    '/student/registration/store',
-    [StudentRegistrationController::class, 'store']
-);
+// Route::post(
+//     '/student/registration/store',
+//     [StudentRegistrationController::class, 'store']
+// );
 
-Route::middleware(['auth', 'role:student'])->group(function () {
+// Route::middleware(['auth', 'role:student'])->group(function () {
 
-    Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])
-        ->name('student.dashboard');
+//     Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])
+//         ->name('student.dashboard');
 
-    Route::get('/student/documents', [StudentDocumentController::class, 'index'])
-        ->name('student.documents');
+//     Route::get('/student/documents', [StudentDocumentController::class, 'index'])
+//         ->name('student.documents');
 
-    Route::post('/student/documents', [StudentDocumentController::class, 'store'])
-        ->name('student.documents.store');
-});
+//     Route::post('/student/documents', [StudentDocumentController::class, 'store'])
+//         ->name('student.documents.store');
+// });
+Route::middleware(['auth', 'role:student'])
+    ->prefix('student')
+    ->name('student.')
+    ->group(function () {
+
+        Route::get('/dashboard', [StudentDashboardController::class, 'index'])
+            ->name('dashboard');
+
+        Route::get('/registration/create', [StudentRegistrationController::class, 'create'])
+            ->name('registration.create');
+
+        Route::post('/registration/store', [StudentRegistrationController::class, 'store'])
+            ->name('registration.store');
+
+        Route::get('/documents', [StudentDocumentController::class, 'index'])
+            ->name('documents');
+
+        Route::post('/documents', [StudentDocumentController::class, 'store'])
+            ->name('documents.store');
+    });
 
 Route::middleware(['auth', 'role:panitia'])->group(function () {
 

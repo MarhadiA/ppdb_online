@@ -12,16 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
+
             $table->id();
 
-            $table->foreignId('registration_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('registration_id')
+                ->constrained()
+                ->cascadeOnDelete();
 
             $table->enum('jenis_dokumen', [
                 'foto',
                 'kk',
                 'ijazah',
                 'rapor',
-                'prestasi'
+                'piagam'
             ]);
 
             // Cloudinary

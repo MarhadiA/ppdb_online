@@ -10,22 +10,37 @@ class PanitiaController extends Controller
 {
 
     public function dashboard()
-    {
-        $todayRegistrations = \App\Models\Registration::whereDate('created_at', today())->count();
+{
+    $totalPendaftar = Registration::count();
 
-        $menungguVerifikasi = \App\Models\Registration::where('status', 'menunggu_verifikasi')->count();
+    $menungguUpload = Registration::where(
+        'status',
+        'menunggu_upload'
+    )->count();
 
-        $terverifikasi = \App\Models\Registration::where('status', 'terverifikasi')->count();
+    $menungguVerifikasi = Registration::where(
+        'status',
+        'menunggu_verifikasi'
+    )->count();
 
-        $dokumenDitolak = \App\Models\Document::where('status_verifikasi', 'ditolak')->count();
+    $terverifikasi = Registration::where(
+        'status',
+        'terverifikasi'
+    )->count();
 
-        return view('panitia.dashboard', compact(
-            'todayRegistrations',
-            'menungguVerifikasi',
-            'terverifikasi',
-            'dokumenDitolak'
-        ));
-    }
+    $dokumenDitolak = Document::where(
+        'status_verifikasi',
+        'ditolak'
+    )->count();
+
+    return view('panitia.dashboard', compact(
+        'totalPendaftar',
+        'menungguUpload',
+        'menungguVerifikasi',
+        'terverifikasi',
+        'dokumenDitolak'
+    ));
+}
     // LIST SISWA
     public function index()
     {
@@ -61,21 +76,44 @@ class PanitiaController extends Controller
     }
 
     // REJECT DOKUMEN
+    // public function reject(Request $request, $id)
+    // {
+    //     $doc = Document::findOrFail($id);
+
+    //     $doc->update([
+    //         'status_verifikasi' => 'ditolak',
+    //         'catatan' => $request->catatan
+    //     ]);
+
+    //     $doc->registration->update([
+    //         'status' => 'menunggu_upload'
+    //     ]);
+
+    //     return back();
+    // }
     public function reject(Request $request, $id)
-    {
-        $doc = Document::findOrFail($id);
+{
+    $request->validate([
+        'catatan' => 'required|string|min:5|max:255',
+    ], [
+        'catatan.required' => 'Catatan penolakan wajib diisi.',
+        'catatan.min' => 'Catatan minimal 5 karakter.',
+        'catatan.max' => 'Catatan maksimal 255 karakter.',
+    ]);
 
-        $doc->update([
-            'status_verifikasi' => 'ditolak',
-            'catatan' => $request->catatan
-        ]);
+    $doc = Document::findOrFail($id);
 
-        $doc->registration->update([
-            'status' => 'menunggu_upload'
-        ]);
+    $doc->update([
+        'status_verifikasi' => 'ditolak',
+        'catatan' => $request->catatan,
+    ]);
 
-        return back();
-    }
+    $doc->registration->update([
+        'status' => 'menunggu_upload',
+    ]);
+
+    return back()->with('success', 'Dokumen berhasil ditolak.');
+}
 
     // CEK SEMUA DOKUMEN
     private function updateStatusRegistration($registrationId)

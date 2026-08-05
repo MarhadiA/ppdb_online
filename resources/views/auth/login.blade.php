@@ -14,7 +14,7 @@
 
         {{-- LEFT SIDE --}}
         <div class="hidden md:flex flex-col justify-center p-10 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
-            <h1 class="text-3xl font-bold">Selamat Datang 👋</h1>
+            <h1 class="text-3xl font-bold">Selamat Datang </h1>
             <p class="mt-3 text-blue-100">
                 Login untuk melanjutkan pendaftaran PPDB Online.
             </p>

@@ -76,7 +76,7 @@
     <div class="mt-10 flex flex-wrap gap-4">
 
         {{-- JALANKAN SELEKSI --}}
-        <form method="POST" action="/admin/seleksi/jalankan">
+        <form method="POST" action="/admin/seleksi/run">
             @csrf
             <button class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700">
                 Jalankan Seleksi

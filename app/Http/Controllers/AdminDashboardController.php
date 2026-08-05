@@ -22,7 +22,7 @@ class AdminDashboardController extends Controller
         $diterima = Registration::where('status', 'diterima')->count();
         $ditolak = Registration::where('status', 'tidak_diterima')->count();
 
-            // 🔥 DAILY 7 HARI TERAKHIR
+            // DAILY 7 HARI TERAKHIR
         $daily = Registration::selectRaw('DATE(created_at) as date, COUNT(*) as total')
         ->where('created_at', '>=', Carbon::now()->subDays(7))
         ->groupBy('date')

@@ -87,21 +87,21 @@
         <div class="grid md:grid-cols-3 gap-8">
 
             <div class="bg-white rounded-3xl shadow-lg p-8 hover:-translate-y-2 transition">
-                <h4 class="text-xl font-bold mb-4">🎓 Pendidikan Berkualitas</h4>
+                <h4 class="text-xl font-bold mb-4"> Pendidikan Berkualitas</h4>
                 <p class="text-slate-600">
                     Kurikulum modern dan relevan dengan kebutuhan industri.
                 </p>
             </div>
 
             <div class="bg-white rounded-3xl shadow-lg p-8 hover:-translate-y-2 transition">
-                <h4 class="text-xl font-bold mb-4">👨‍🏫 Guru Profesional</h4>
+                <h4 class="text-xl font-bold mb-4">Guru Profesional</h4>
                 <p class="text-slate-600">
                     Didukung tenaga pengajar berpengalaman dan kompeten.
                 </p>
             </div>
 
             <div class="bg-white rounded-3xl shadow-lg p-8 hover:-translate-y-2 transition">
-                <h4 class="text-xl font-bold mb-4">🏢 Fasilitas Modern</h4>
+                <h4 class="text-xl font-bold mb-4">Fasilitas Modern</h4>
                 <p class="text-slate-600">
                     Lab komputer, workshop, perpustakaan, dan sarana lengkap.
                 </p>

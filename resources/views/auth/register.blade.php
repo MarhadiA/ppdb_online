@@ -14,7 +14,7 @@
 
         {{-- LEFT SIDE --}}
         <div class="hidden md:flex flex-col justify-center p-10 bg-gradient-to-br from-green-600 to-emerald-700 text-white">
-            <h1 class="text-3xl font-bold">Buat Akun 🚀</h1>
+            <h1 class="text-3xl font-bold">Buat Akun</h1>
             <p class="mt-3 text-green-100">
                 Daftar untuk mengikuti PPDB Online sekolah.
             </p>
