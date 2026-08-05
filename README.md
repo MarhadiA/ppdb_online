@@ -1,59 +1,156 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PPDB Online System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web-based Student Admission System built with Laravel, PostgreSQL, and Cloudinary to streamline the entire admission process—from student registration and document submission to verification, selection, and announcement publishing.
 
-## About Laravel
+**Live Demo:**  
+https://ppdb.marhadiakbar.com
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## About The Project
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+PPDB Online is a web application designed to digitalize the student admission process. The system provides role-based access for administrators, committee members, and applicants while supporting online document uploads, registration verification, quota-based admission selection, and announcement publishing.
 
-## Learning Laravel
+This project was developed as a portfolio project to demonstrate full-stack web development skills using the Laravel framework.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Features
 
-## Laravel Sponsors
+### Student
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- User Registration and Login
+- Student Registration Form
+- Upload Required Documents
+- Registration Status Tracking
+- View Admission Announcement
 
-### Premium Partners
+### Committee
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- Verify Student Documents
+- Validate Registration Data
+- Monitor Applicant Registrations
 
-## Contributing
+### Administrator
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Dashboard Analytics
+- Manage Students
+- Manage Committee Accounts
+- Manage Admission Paths
+- Configure Admission Quotas
+- Publish Announcements
+- Execute Admission Selection
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Tech Stack
 
-## Security Vulnerabilities
+### Backend
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Laravel 12
+- PHP 8.4
+
+### Frontend
+
+- Blade
+- Tailwind CSS
+- JavaScript
+
+### Database
+
+- PostgreSQL
+
+### Cloud Storage
+
+- Cloudinary
+
+### Deployment
+
+- Apache
+- cPanel
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/YOUR_USERNAME/ppdb-online.git
+
+cd ppdb-online
+
+composer install
+
+npm install
+
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate --seed
+
+npm run build
+
+php artisan serve
+```
+
+---
+
+## Live Demo
+
+https://ppdb.marhadiakbar.com
+
+---
+
+## Project Structure
+
+```
+app/
+bootstrap/
+config/
+database/
+public/
+resources/
+routes/
+storage/
+vendor/
+```
+
+---
+
+## Admission Workflow
+
+1. Student Registration
+2. Complete Personal Information
+3. Upload Required Documents
+4. Committee Verification
+5. Admission Selection Process
+6. Announcement Publication
+
+---
+
+## Main Technologies
+
+- Laravel
+- PostgreSQL
+- Cloudinary
+- Tailwind CSS
+- Blade
+- Role-Based Access Control (RBAC)
+
+---
+
+## Developer
+
+**Marhadi Akbar**
+
+GitHub: https://github.com/YOUR_USERNAME
+
+LinkedIn: https://linkedin.com/in/YOUR_USERNAME
+
+Portfolio / Live Demo: https://ppdb.marhadiakbar.com
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project was developed for educational and portfolio purposes.
